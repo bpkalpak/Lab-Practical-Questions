@@ -3,30 +3,41 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.print("N = ");
 
-        int employeeId = sc.nextInt();
-        String name = sc.next();
-        int[] attendance = new int[7];
+        int n = sc.nextInt();
+        int a = 0, b = 0, c = 0, d = 0, f = 0;
+        int sum = 0;
 
-        for (int i = 0; i < 7; i++) {
-            attendance[i] = sc.nextInt();
-            if (attendance[i] != 0 && attendance[i] != 1) {
-                System.out.println("Invalid Attendance Input");
-                return;
+        System.out.print("Grades: ");
+
+        for (int i = 0; i < n; i++) {
+            int mark = sc.nextInt();
+            sum += mark;
+
+            if (mark >= 90) {
+                System.out.print("A");
+                a++;
+            } else if (mark >= 80) {
+                System.out.print("B");
+                b++;
+            } else if (mark >= 70) {
+                System.out.print("C");
+                c++;
+            } else if (mark >= 60) {
+                System.out.print("D");
+                d++;
+            } else {
+                System.out.print("F");
+                f++;
             }
+
+            if (i < n - 1)
+                System.out.print(" ");
         }
 
-        int presentDays = 0;
-        for (int day : attendance) {
-            presentDays += day;
-        }
-
-        int absentDays = 7 - presentDays;
-        double percentage = (presentDays / 7.0) * 100;
-
-        System.out.printf("Attendance = %.2f%%, Absent Days = %d, %s%n",
-                percentage,
-                absentDays,
-                percentage >= 90 ? "Eligible" : "Not Eligible");
+        System.out.println();
+        System.out.println("A=" + a + ", B=" + b + ", C=" + c + ", D=" + d + ", F=" + f);
+        System.out.printf("Average = %.1f%n", (double) sum / n);
     }
 }
